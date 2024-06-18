@@ -1,0 +1,11 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: demo-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    # minikube subnet -> 192.168.49.0/24
+    - 192.168.49.100-192.168.49.110
+    # metallb subnet -> 192.168.58.0/24
+    # - 192.168.58.100-192.168.58.110
