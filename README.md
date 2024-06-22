@@ -8,19 +8,25 @@
     minikube start -p metallb-test
     ```
 
-2.  clone github repository
+2.  install MetalLB
+
+    ```zsh
+    kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.5/config/manifests/metallb-native.yaml
+    ```
+
+3.  clone github repository
 
     ```zsh
     git clone https://github.com/conradwt/metallb-test.git
     ```
 
-3.  change directory
+4.  change directory
 
     ```zsh
     cd metallb-test
     ```
 
-4.  locate the subnet
+5.  locate the subnet
 
     ```zsh
     docker network inspect metallb-test | jq '.[0].IPAM.Config[0]["Subnet"]'
@@ -49,7 +55,7 @@
     194.1.2.100-194.1.2.110
     ```
 
-5.  update the `metallb-address-pool.yaml`
+6.  update the `metallb-address-pool.yaml`
 
     ```yaml
     apiVersion: metallb.io/v1beta1
@@ -62,31 +68,31 @@
         - 194.1.2.100-194.1.2.110
     ```
 
-6.  apply the address pool manifest
+7.  apply the address pool manifest
 
     ```zsh
     kubectl apply -f metallb-address-pool.yaml
     ```
 
-7.  apply Layer 2 advertisement manifest
+8.  apply Layer 2 advertisement manifest
 
     ```zsh
     kubectl apply -f metallb-advertise.yaml
     ```
 
-8.  apply deployment manifest
+9.  apply deployment manifest
 
     ```zsh
     kubectl apply -f nginx-deployment.yaml
     ```
 
-9.  apply service manifest
+10. apply service manifest
 
     ```zsh
     kubectl apply -f nginx-service-loadbalancer.yaml
     ```
 
-10. check that your service has an IP address
+11. check that your service has an IP address
 
     ```zsh
     kubectl get svc nginx-service
@@ -99,7 +105,7 @@
     nginx-service   LoadBalancer   10.106.207.172   194.1.2.100   80:32000/TCP   17h
     ```
 
-11. expected output
+12. expected output
 
     input:
 
@@ -135,7 +141,7 @@
     </html>
     ```
 
-12. actual output
+13. actual output
 
     input:
 
