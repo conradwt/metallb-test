@@ -26,13 +26,13 @@
     cd metallb-test
     ```
 
-5.  locate the address pool
+5.  locate the subnet
 
     ```zsh
-    docker network inspect minikube
+    docker network inspect metallb-test | jq '.[0].IPAM.Config[0]["Subnet"]'
     ```
 
-    Note: grab the Subnet value from the first config block and it should
+    Note: This grabs the Subnet value from the first config block and it should
     look something like the following:
 
     ```json
