@@ -1,5 +1,13 @@
 # MetalLB Test
 
+## Software Requirements
+
+- Minikube v1.33.1 or newer
+
+- OrbStack v1.6.2 or newer
+
+Note: This tutorial was updated on macOS 14.5.  The below steps doesn't work with Docker Desktop v4.31.1 because it doesn't expose Linux VM IP addresses to the host OS (i.e. macOS).
+
 ## Steps To Reproduce
 
 1.  create Minikube cluster
